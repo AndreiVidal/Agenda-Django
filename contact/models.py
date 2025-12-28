@@ -7,3 +7,7 @@ class Contact(models.Model):
     email = models.EmailField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True)
+    show = models.BooleanField(default=True)
+    
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name}"
