@@ -23,3 +23,9 @@ class ContactAdmin(admin.ModelAdmin):
     list_max_show_all = 200
 
     list_editable = ('phone_number', 'email','show')
+
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    search_fields = ('name',)
+    ordering = ('name',)
