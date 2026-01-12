@@ -1,0 +1,61 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+<div class="single-contact">
+
+    {# FOTO DO CONTATO #}
+    {% if contact.picture %}
+        <div class="contact-photo-wrapper">
+            <img
+                src="{{ contact.picture.url }}"
+                alt="Foto de {{ contact.first_name }}"
+                class="contact-photo"
+            >
+        </div>
+    {% else %}
+        <div class="contact-photo-wrapper">
+            <div class="contact-photo-placeholder">
+                {{ contact.first_name|first }}
+            </div>
+        </div>
+    {% endif %}
+
+    <h1 class="single-contact-name">
+        {{ contact.first_name }} {{ contact.last_name }}
+    </h1>
+
+    <p class="contact-category">
+        <strong>Categoria:</strong>
+       <span class="contact-category-badge"> {{ contact.category.name|default:"Sem categoria" }}</span>
+    </p>
+
+    <div class="form-content">
+
+        <p><strong>ID:</strong> {{ contact.id }}</p>
+        <p><strong>Telefone:</strong> {{ contact.phone_number }}</p>
+        <p><strong>E-mail:</strong> {{ contact.email }}</p>
+
+        {% if contact.created_at %}
+            <p>
+                <strong>Criado em:</strong>
+                {{ contact.created_at|date:"d/m/Y H:i" }}
+            </p>
+        {% endif %}
+
+        {% if contact.description %}
+            <p>
+                <strong>Observações:</strong>
+                {{ contact.description }}
+            </p>
+        {% endif %}
+
+    </div>
+
+    <div class="contact-links">
+        <a href="#" class="btn btn-link">✏️ Editar</a>
+        <a href="#" class="btn btn-link btn-delete">🗑️ Excluir</a>
+        <a href="{% url 'contact:index' %}" class="btn btn-link">⬅️ Voltar</a>
+    </div>
+
+</div>
+{% endblock content %}

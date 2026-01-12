@@ -17,9 +17,9 @@ class ContactAdmin(admin.ModelAdmin):
 
     search_fields = ('first_name', 'last_name', 'email')
     search_help_text = 'Search by first name, last name, or email.'
-    ordering = ('first_name',)
+    ordering = ('-id',)
 
-    list_per_page = 100
+    list_per_page = 10
     list_max_show_all = 200
 
     list_editable = ('phone_number', 'email','show')
